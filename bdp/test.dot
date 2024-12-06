@@ -1,0 +1,7 @@
+digraph {
+Battleships [ label=" Battleships " shape= box ]
+Battleships_Base [ label=" Battleships_Base " shape= box ]
+Battleships_Main [ label=" Battleships_Main " shape= box ]
+
+"Battleships_Main" -> "Battleships_Base" [style= dotted ]
+}

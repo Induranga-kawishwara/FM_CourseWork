@@ -1,34 +1,39 @@
+/* Battleships_Base
+ * Author: induranga kawishwara 
+ * ID : 20200688 / w1913278
+ */
+  
 MACHINE Battleships_Main
 SEES
     Battleships_Base
 
 VARIABLES
-    player1Ships, player2Ships, currentTurn, gameStatus, player1Hits, player2Hits
+    player1Ships, player2Ships, currentTurn, gameStatus, player1shots, player2shots
 
 INVARIANT
     player1Ships <: GRID_POSITION &
     player2Ships <: GRID_POSITION &
     card(player1Ships) <= MAX_SHIPS &
     card(player2Ships) <= MAX_SHIPS &
-    player1Ships /\ player2Ships = {} &
+   // player1Ships /\ player2Ships = {} &
     currentTurn : PLAYER &
     gameStatus : STATUS &
-    player1Hits : NAT &
-    player2Hits : NAT 
+    player1shots : NAT &
+    player2shots : NAT 
 
 INITIALISATION
     player1Ships := {} ||
     player2Ships := {} ||
     currentTurn := Player1 ||
-    gameStatus := ongoing ||
-    player1Hits := 0 ||
-    player2Hits := 0 
+    gameStatus := deployPending ||
+    player1shots := 0 ||
+    player2shots := 0 
 
 OPERATIONS
     // Deploy the fleet for a player
     report <-- deployFleet(player, positions) =
     PRE
-        gameStatus = ongoing &
+        gameStatus = deployPending &
         player : PLAYER &
         positions <: GRID_POSITION &
         card(positions) = MAX_SHIPS &
@@ -38,7 +43,8 @@ OPERATIONS
         IF player = Player1 THEN
             player1Ships := positions
         ELSE
-            player2Ships := positions
+            player2Ships := positions ||
+            gameStatus := ongoing
         END ||
         report := FleetDeployed
     END;
@@ -47,14 +53,13 @@ OPERATIONS
     report <-- playerShoots(target) =
     PRE
         target : GRID_POSITION &
-        gameStatus = ongoing &
-        player1Ships /= {} &
-        player2Ships /= {}
+        gameStatus = ongoing 
+        
     THEN
         IF currentTurn = Player1 THEN
             IF target : player2Ships THEN
                 player2Ships := player2Ships - {target} ||
-                player1Hits := player1Hits + 1 ||
+                player1shots := player1shots + 1 ||
                 report := hit ||
                 IF player2Ships - {target} = {} THEN
                     gameStatus := player1Win
@@ -68,7 +73,7 @@ OPERATIONS
         ELSE  // Player2's turn
             IF target : player1Ships THEN
                 player1Ships := player1Ships - {target} ||
-                player2Hits := player2Hits + 1 ||
+                player2shots := player2shots + 1 ||
                 report := hit ||
                 IF  player1Ships - {target} = {} THEN
                     gameStatus := player2Win
@@ -106,9 +111,9 @@ OPERATIONS
         player : PLAYER
     THEN
         IF player = Player1 THEN
-            hitCount := player1Hits
+            hitCount := player1shots
         ELSE
-            hitCount := player2Hits
+            hitCount := player2shots
         END
     END;
 

@@ -1,7 +1,11 @@
+/* Battleships_Base
+ * Author: induranga kawishwara 
+ * ID : 20200688 / w1913278
+ */
 MACHINE Battleships_Base
 SETS
     PLAYER = {Player1, Player2};
-    STATUS = {ongoing, player1Win, player2Win};
+    STATUS = {deployPending,ongoing, player1Win, player2Win};
     RESULT = {hit, miss, FleetDeployed}
 
 CONSTANTS
@@ -9,6 +13,6 @@ CONSTANTS
 
 PROPERTIES
     MAX_SHIPS = 3 &
-    GRID_POSITION = (1..2) * (1..2)  // Adjust to 10x10 for coursework requirement
+    GRID_POSITION = (1..10) * (1..10) 
 
 END

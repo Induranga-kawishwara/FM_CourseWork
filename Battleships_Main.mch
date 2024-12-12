@@ -1,58 +1,103 @@
-/* Battleships_Base
- * Author: induranga kawishwara 
+
+/* Battleships_Main
+ * Author: Induranga Kawishwara 
  * ID : 20200688 / w1913278
  */
-  
+
 MACHINE Battleships_Main
-    
-// Include the Battleships_Base machine to access the constants and sets    
+
+// Include the Battleships_Base machine to access constants and sets
 SEES
     Battleships_Base
-    
+
 // Declare the variables used in the game
 VARIABLES
-    // player1Ships and player2Ships hold the positions of ships for each player    
-    player1Ships, player2Ships,
-    // currentTurn holds the player whose turn it is to play    
-    currentTurn,
-    // gameStatus holds the current state of the game.
-    gameStatus, 
-    // player1shots and player2shots track the number of shots each player has made    
-    player1shots, player2shots
-    
+    player1Ships, player2Ships, currentTurn, gameStatus, player1shots, player2shots , hitCellsPlayer1 ,hitCellsPlayer2, missCellsPlayer1 , missCellsPlayer2
+
 // Invariant ensures that the variables follow the rules of the game
 INVARIANT
-    // player1Ships and player2Ships are subsets of the grid positions    
     player1Ships <: GRID_POSITION &
     player2Ships <: GRID_POSITION &
-    
-    // Each player can have at most MAX_SHIPS ships    
     card(player1Ships) <= MAX_SHIPS &
     card(player2Ships) <= MAX_SHIPS &
-    
-    // currentTurn must be a valid player (Player1 or Player2)    
     currentTurn : PLAYER &
-    
-    // gameStatus must be a valid game state    
     gameStatus : STATUS &
-    
-    // player1shots and player2shots are natural numbers    
     player1shots : NAT &
-    player2shots : NAT 
-    
-    
+    player2shots : NAT &
+    hitCellsPlayer1 <: GRID_POSITION &
+    hitCellsPlayer2 <: GRID_POSITION &
+    missCellsPlayer1 <: GRID_POSITION &
+    missCellsPlayer2 <: GRID_POSITION 
+
+
 // Initialisation defines the initial state of the game
 INITIALISATION
-    // Set initial values for each variable
     player1Ships := {} ||
     player2Ships := {} ||
     currentTurn := Player1 ||
     gameStatus := deployPending ||
     player1shots := 0 ||
-    player2shots := 0 
+    player2shots := 0 ||
+    hitCellsPlayer1 := {}||
+    hitCellsPlayer2 := {}||
+    missCellsPlayer1 := {}||
+    missCellsPlayer2 := {}
+
+DEFINITIONS
+
+
+    // Define animation functions for visualizing the grid, ships, hits, and misses
+
+ANIMATION_FUNCTION ==
+    ({ row, col, img | col : 1..10 & row : 1..10 & img = 0 & 
+        (col, 11 - row) : GRID_POSITION }) // Base grid for Player 1
+    \/   ({ row, col, img | col : 11..11 & row : 1..10 & img = 2 & 
+        (col -10, 11 - row) : GRID_POSITION }) 
+    \/
+    ({ row, col, img | col : 12..21 & row : 1..10 & img = 1 & 
+        (col - 11, 11 - row) : GRID_POSITION }) ;
+
+
+//    ANIMATION_FUNCTION == 
+//        ({ row, col, img | col : 1..10 & row : 1..10 & img = 0 & 
+//            (col, 11 - row) : GRID_POSITION });
+//
+    ANIMATION_FUNCTION1 ==
+        ({ row, col, img | col : 1..10 & row : 1..10 & img = 3 & 
+            (col, 11 - row) : player1Ships });
+
+    ANIMATION_FUNCTION2 ==
+        ({ row, col, img | col : 12..21 & row : 1..10 & img = 4 & 
+            (col - 11, 11 - row)  : player2Ships });
+
+    ANIMATION_FUNCTION4 ==
+        ({ row, col, img | col : 1..10 & row : 1..10 & img = 6 & 
+            (col, 11 - row) : hitCellsPlayer2 });
+
+   ANIMATION_FUNCTION5 ==
+        ({ row, col, img | col : 12..21 & row : 1..10 & img = 6 & 
+            (col-11, 11 - row) : hitCellsPlayer1 });
+
+    ANIMATION_FUNCTION6 ==
+        ({ row, col, img | col : 1..10 & row : 1..10 & img = 5 & 
+            (col , 11 - row) :  missCellsPlayer2 });
+
+    ANIMATION_FUNCTION7 ==
+        ({ row, col, img | col : 12..21 & row : 1..10 & img = 5 & 
+            (col-11 , 11 - row) :  missCellsPlayer1 });
+
+
+    // Images for the grid and elements
+    ANIMATION_IMG0 == "Images/squarBlue.png";
+    ANIMATION_IMG1 == "Images/squarOrange.png";
+    ANIMATION_IMG2 == "Images/squarWhite.png";
+    ANIMATION_IMG3 == "Images/player1Ship.png";
+    ANIMATION_IMG4 == "Images/player2Ship.png";
+    ANIMATION_IMG5 == "Images/lostTarget.png";
+    ANIMATION_IMG6 == "Images/win.png";
 
 OPERATIONS
-    // Deploy the fleet for a player
+     // Deploy the fleet for a player
     report <-- deployFleet(player, positions) =
     PRE
         // The game must be in the deployPending state
@@ -95,6 +140,7 @@ OPERATIONS
                 player2Ships := player2Ships - {target} ||// Remove the ship from Player2's fleet
                 player1shots := player1shots + 1 || // Increment Player1's shot count
                 report := hit ||// Report the hit
+                hitCellsPlayer1 := hitCellsPlayer1 \/ {target} ||
                 // If Player2 has no ships left, Player1 wins
                 IF player2Ships - {target} = {} THEN
                     gameStatus := player1Win
@@ -105,6 +151,7 @@ OPERATIONS
             ELSE
                 // If the shot misses
                 report := miss ||
+                missCellsPlayer1  := missCellsPlayer1 \/ {target} ||
                 currentTurn := Player2
             END
         ELSE  // Player2's turn
@@ -113,6 +160,7 @@ OPERATIONS
                 player1Ships := player1Ships - {target} ||
                 player2shots := player2shots + 1 ||
                 report := hit ||
+                hitCellsPlayer2 := hitCellsPlayer2 \/ {target} ||
                 IF  player1Ships - {target} = {} THEN
                     gameStatus := player2Win
                 ELSE
@@ -120,6 +168,7 @@ OPERATIONS
                 END
             ELSE
                 report := miss ||
+                missCellsPlayer2  := missCellsPlayer2 \/ {target} ||
                 currentTurn := Player1
             END
         END

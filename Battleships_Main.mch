@@ -48,6 +48,14 @@ DEFINITIONS
             (col-11 , 11 - row) :  missCellsPlayer1 });
 
 
+   ANIMATION_FUNCTION55 == 
+     ({ row, col, img | row : 20..20 & col : 11..11 & img = 7 & (gameStatus = player1Win) }) \/
+     ({ row, col, img | row : 20..20 & col : 10..10& img = 11 & (gameStatus = player1Win) }) \/
+     ({ row, col, img | row : 20..20 & col : 12..12 & img = 12 & (gameStatus = player1Win) })  \/
+     ({ row, col, img | row : 20..20 & col : 11..11 & img = 8 & (gameStatus = player2Win) }) \/
+     ({ row, col, img | row : 20..20 & col : 10..10& img = 11 & (gameStatus = player2Win) }) \/
+     ({ row, col, img | row : 20..20 & col : 12..12 & img = 12 & (gameStatus = player2Win) }) ;
+
     // Images for the grid and elements
     ANIMATION_IMG0 == "Images/squarBlue.png";
     ANIMATION_IMG1 == "Images/squarOrange.png";
@@ -56,6 +64,17 @@ DEFINITIONS
     ANIMATION_IMG4 == "Images/player2Ship.png";
     ANIMATION_IMG5 == "Images/lostTarget.png";
     ANIMATION_IMG6 == "Images/win.png";
+    ANIMATION_IMG7 == "Images/player01won.png";
+    ANIMATION_IMG8 == "Images/player02won.png";
+    ANIMATION_IMG9 == "Images/blackSquar.png";
+    ANIMATION_IMG11 == "Images/redArrow.png";
+    ANIMATION_IMG12 == "Images/redArrow2.png";
+
+
+
+
+
+
 
 // Declare the variables used in the game
 VARIABLES
@@ -74,7 +93,7 @@ INVARIANT
     hitCellsPlayer1 <: GRID_POSITION &
     hitCellsPlayer2 <: GRID_POSITION &
     missCellsPlayer1 <: GRID_POSITION &
-    missCellsPlayer2 <: GRID_POSITION
+    missCellsPlayer2 <: GRID_POSITION 
 
 
 // Initialisation defines the initial state of the game
@@ -88,7 +107,7 @@ INITIALISATION
     hitCellsPlayer1 := {}||
     hitCellsPlayer2 := {}||
     missCellsPlayer1 := {}||
-    missCellsPlayer2 := {}
+    missCellsPlayer2 := {} 
 
 
 
@@ -216,5 +235,19 @@ OPERATIONS
     statusReport <-- gameStatusReport =
     BEGIN
         statusReport := gameStatus
+    END;
+    // Reset Game
+    resetGame =
+    BEGIN
+        player1Ships := {} ||
+        player2Ships := {} ||
+        currentTurn := Player1 ||
+        gameStatus := deployPending ||
+        player1shots := 0 ||
+        player2shots := 0 ||
+        hitCellsPlayer1 := {}||
+        hitCellsPlayer2 := {}||
+        missCellsPlayer1 := {}||
+        missCellsPlayer2 := {} 
     END
 END

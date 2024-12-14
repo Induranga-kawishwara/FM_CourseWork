@@ -55,13 +55,8 @@ ANIMATION_FUNCTION ==
         (col -10, 11 - row) : GRID_POSITION }) 
     \/
     ({ row, col, img | col : 12..21 & row : 1..10 & img = 1 & 
-        (col - 11, 11 - row) : GRID_POSITION }) ;
+        (col - 11, 11 - row) : GRID_POSITION }) ;// Base grid for Player 2
 
-
-//    ANIMATION_FUNCTION == 
-//        ({ row, col, img | col : 1..10 & row : 1..10 & img = 0 & 
-//            (col, 11 - row) : GRID_POSITION });
-//
     ANIMATION_FUNCTION1 ==
         ({ row, col, img | col : 1..10 & row : 1..10 & img = 3 & 
             (col, 11 - row) : player1Ships });
@@ -130,13 +125,13 @@ OPERATIONS
         // The target must be a valid grid position
         target : GRID_POSITION &
         // The game must be ongoing
-        gameStatus = ongoing 
+        gameStatus = ongoing  
         
     THEN
         // If it is Player1's turn
         IF currentTurn = Player1 THEN
             // If the shot hits Player2's fleet
-            IF target : player2Ships THEN
+            IF target : player2Ships &  target  /:    hitCellsPlayer1 \/ missCellsPlayer1 THEN
                 player2Ships := player2Ships - {target} ||// Remove the ship from Player2's fleet
                 player1shots := player1shots + 1 || // Increment Player1's shot count
                 report := hit ||// Report the hit
@@ -156,7 +151,7 @@ OPERATIONS
             END
         ELSE  // Player2's turn
             // If the shot hits Player1's fleet
-            IF target : player1Ships THEN
+            IF target : player1Ships &  target  /: hitCellsPlayer2 \/ missCellsPlayer2 THEN
                 player1Ships := player1Ships - {target} ||
                 player2shots := player2shots + 1 ||
                 report := hit ||

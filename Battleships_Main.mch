@@ -47,13 +47,11 @@ DEFINITIONS
             (col-11 , 11 - row) :  missCellsPlayer1 });
 
 
-   ANIMATION_FUNCTION55 == 
+   ANIMATION_FUNCTION55 ==  
      ({ row, col, img | row : 20..20 & col : 11..11 & img = 7 & (gameStatus = player1Win) }) \/
-     ({ row, col, img | row : 20..20 & col : 10..10& img = 11 & (gameStatus = player1Win) }) \/
-     ({ row, col, img | row : 20..20 & col : 12..12 & img = 12 & (gameStatus = player1Win) })  \/
      ({ row, col, img | row : 20..20 & col : 11..11 & img = 8 & (gameStatus = player2Win) }) \/
-     ({ row, col, img | row : 20..20 & col : 10..10& img = 11 & (gameStatus = player2Win) }) \/
-     ({ row, col, img | row : 20..20 & col : 12..12 & img = 12 & (gameStatus = player2Win) }) ;
+     ({ row, col, img | row : 20..20 & col : 10..10& img = 11 & gameStatus : {player1Win , player2Win}}) \/
+     ({ row, col, img | row : 20..20 & col : 12..12 & img = 12 & gameStatus : {player1Win , player2Win}}) ;
 
     // Images for the grid and elements
     ANIMATION_IMG0 == "Images/squarBlue.png";
@@ -230,7 +228,7 @@ OPERATIONS
         statusReport := gameStatus
     END;
     // Reset Game
-    resetGame =
+    restart <-- resetGame =
     BEGIN
         player1Ships := {} ||
         player2Ships := {} ||
@@ -241,6 +239,7 @@ OPERATIONS
         hitCellsPlayer1 := {}||
         hitCellsPlayer2 := {}||
         missCellsPlayer1 := {}||
-        missCellsPlayer2 := {} 
+        missCellsPlayer2 := {} ||
+        restart := "The Game Reset Successfully"
     END
 END

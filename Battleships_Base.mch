@@ -7,7 +7,7 @@ MACHINE Battleships_Base
     
 SETS
     PLAYER = {Player1, Player2};
-    STATUS = {deployPending, ongoing, player1Win, player2Win};
+    STATUS = {deployPending, ongoing, player1Win, player2Win,resetSuccess};
     RESULT = {hit, miss, FleetDeployed , AlradyUsed}
 
 CONSTANTS

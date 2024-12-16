@@ -240,6 +240,6 @@ OPERATIONS
         hitCellsPlayer2 := {}||
         missCellsPlayer1 := {}||
         missCellsPlayer2 := {} ||
-        restart := "The Game Reset Successfully"
+        restart := resetSuccess
     END
 END

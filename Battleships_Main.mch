@@ -145,10 +145,10 @@ OPERATIONS
                 report := AlradyUsed
             ELSE
                 // If the shot hits Player2's fleet
+                player1shots := player1shots + 1 || // Increment Player1's shot count
                 IF target : player2Ships THEN
  
                     player2Ships := player2Ships - {target} ||// Remove the ship from Player2's fleet
-                    player1shots := player1shots + 1 || // Increment Player1's shot count
                     report := hit ||// Report the hit
                     hitCellsPlayer1 := hitCellsPlayer1 \/ {target} ||
                     // If Player2 has no ships left, Player1 wins
@@ -170,9 +170,9 @@ OPERATIONS
             IF target : hitCellsPlayer2 \/ missCellsPlayer2 THEN
                 report := AlradyUsed
             ELSE
+                    player2shots := player2shots + 1 ||
                 IF target : player1Ships THEN
                     player1Ships := player1Ships - {target} ||
-                    player2shots := player2shots + 1 ||
                     report := hit ||
                     hitCellsPlayer2 := hitCellsPlayer2 \/ {target} ||
                     IF  player1Ships - {target} = {} THEN

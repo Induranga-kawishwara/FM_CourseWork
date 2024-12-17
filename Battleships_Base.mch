@@ -8,7 +8,7 @@ MACHINE Battleships_Base
 SETS
     PLAYER = {Player1, Player2};
     STATUS = {deployPending, ongoing, player1Win, player2Win,resetSuccess};
-    RESULT = {hit, miss, FleetDeployed , AlradyUsed}
+    RESULT = {hit, miss, FleetDeployed , AlreadyUsed}
 
 CONSTANTS
     MAX_SHIPS, GRID_POSITION

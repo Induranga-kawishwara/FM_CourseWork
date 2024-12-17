@@ -2,23 +2,23 @@ digraph history {
 graph [nodesep=1.5, ranksep=1.5];
 0 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="MAX_SHIPS = 3,GRID_POSITION = \{(1\|-\>1),(1\|-\>2),(1\|-\>3),(1\|-\>4),(1\|-\>5),(1\|-\>6),(1\|-\>7),(1\|-\>8),(1\|-\>9),(1\|-\>10),(2\|-\>1),(2\|-\>2),(2\|-\>3),(2\|-\>4),(2\|-\>5),(2\|-\>6),(2\|-\>7),(2\|-\>8),(2\|-\>9),(2\|-\>10),(3\|-\>1),(3\|-\>2),(3\|-\>3),(3\|-\>4),(3\|-\>5),(3\|-\>6),(3\|-\>7),(3\|-\>8),(3\|-\>9),(3\|-\>10),(4\|-\>1),(4\|-\>2),(4\|-\>3),(4\|-\>4),(4\|-\>5),(4\|-\>6),(4\|-\>7),(4\|-\>8),(4\|-\>9),(4\|-..."];
 
-1 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player1,gameStatus = deployPending,hitCellsPlayer1 = \{\},\nhitCellsPlayer2 = \{\},missCellsPlayer1 = \{\},missCellsPlayer2 = \{\},\nplayer1Ships = \{\},player1shots = 0,player2Ships = \{\},\nplayer2shots = 0"];
+1 [shape=doubleoctagon, color="#99BF38", fontsize=12, penwidth=2, label="repeated (2)\ncurrentTurn = Player1,gameStatus = deployPending,hitCellsPlayer1 = \{\},\nhitCellsPlayer2 = \{\},missCellsPlayer1 = \{\},missCellsPlayer2 = \{\},\nplayer1Ships = \{\},player1shots = 0,player2Ships = \{\},\nplayer2shots = 0"];
 
 21 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player1,gameStatus = deployPending,hitCellsPlayer1 = \{\},\nhitCellsPlayer2 = \{\},missCellsPlayer1 = \{\},missCellsPlayer2 = \{\},\nplayer1Ships = \{(1\|-\>1),(1\|-\>2),(3\|-\>2)\},player1shots = 0,player2Ships = \{\},\nplayer2shots = 0"];
 
-105 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player1,gameStatus = ongoing,hitCellsPlayer1 = \{\},\nhitCellsPlayer2 = \{\},missCellsPlayer1 = \{\},missCellsPlayer2 = \{\},\nplayer1Ships = \{(1\|-\>1),(1\|-\>2),(3\|-\>2)\},player1shots = 0,player2Ships = \{(1\|-\>1),(1\|-\>2),(1\|-\>6)\},\nplayer2shots = 0"];
+1005 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player1,gameStatus = ongoing,hitCellsPlayer1 = \{\},\nhitCellsPlayer2 = \{\},missCellsPlayer1 = \{\},missCellsPlayer2 = \{\},\nplayer1Ships = \{(1\|-\>1),(1\|-\>2),(3\|-\>2)\},player1shots = 0,player2Ships = \{(1\|-\>1),(1\|-\>2),(1\|-\>6)\},\nplayer2shots = 0"];
 
-202 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player2,gameStatus = ongoing,hitCellsPlayer1(1) = 1,\nhitCellsPlayer2 = \{\},missCellsPlayer1 = \{\},missCellsPlayer2 = \{\},\nplayer1Ships = \{(1\|-\>1),(1\|-\>2),(3\|-\>2)\},player1shots = 1,player2Ships = \{(1\|-\>2),(1\|-\>6)\},\nplayer2shots = 0"];
+2002 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player2,gameStatus = ongoing,hitCellsPlayer1(1) = 1,\nhitCellsPlayer2 = \{\},missCellsPlayer1 = \{\},missCellsPlayer2 = \{\},\nplayer1Ships = \{(1\|-\>1),(1\|-\>2),(3\|-\>2)\},player1shots = 1,player2Ships = \{(1\|-\>2),(1\|-\>6)\},\nplayer2shots = 0"];
 
-303 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player1,gameStatus = ongoing,hitCellsPlayer1(1) = 1,\nhitCellsPlayer2(1) = 2,missCellsPlayer1 = \{\},missCellsPlayer2 = \{\},\nplayer1Ships(1) = 1,player1Ships(3) = 2,player1shots = 1,\nplayer2Ships = \{(1\|-\>2),(1\|-\>6)\},player2shots = 1"];
+2103 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player1,gameStatus = ongoing,hitCellsPlayer1(1) = 1,\nhitCellsPlayer2(1) = 2,missCellsPlayer1 = \{\},missCellsPlayer2 = \{\},\nplayer1Ships(1) = 1,player1Ships(3) = 2,player1shots = 1,\nplayer2Ships = \{(1\|-\>2),(1\|-\>6)\},player2shots = 1"];
 
-402 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player2,gameStatus = ongoing,hitCellsPlayer1 = \{(1\|-\>1),(1\|-\>2)\},\nhitCellsPlayer2(1) = 2,missCellsPlayer1 = \{\},missCellsPlayer2 = \{\},\nplayer1Ships(1) = 1,player1Ships(3) = 2,player1shots = 2,\nplayer2Ships(1) = 6,player2shots = 1"];
+2204 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player2,gameStatus = ongoing,hitCellsPlayer1(1) = 1,\nhitCellsPlayer2(1) = 2,missCellsPlayer1(1) = 4,missCellsPlayer2 = \{\},\nplayer1Ships(1) = 1,player1Ships(3) = 2,player1shots = 2,\nplayer2Ships = \{(1\|-\>2),(1\|-\>6)\},player2shots = 1"];
 
-503 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player1,gameStatus = ongoing,hitCellsPlayer1 = \{(1\|-\>1),(1\|-\>2)\},\nhitCellsPlayer2(1) = 2,missCellsPlayer1 = \{\},missCellsPlayer2(1) = 4,\nplayer1Ships(1) = 1,player1Ships(3) = 2,player1shots = 2,\nplayer2Ships(1) = 6,player2shots = 1"];
+2301 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player1,gameStatus = ongoing,hitCellsPlayer1(1) = 1,\nhitCellsPlayer2 = \{(1\|-\>1),(1\|-\>2)\},missCellsPlayer1(1) = 4,missCellsPlayer2 = \{\},\nplayer1Ships(3) = 2,player1shots = 2,player2Ships = \{(1\|-\>2),(1\|-\>6)\},\nplayer2shots = 2"];
 
-606 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player2,gameStatus = ongoing,hitCellsPlayer1 = \{(1\|-\>1),(1\|-\>2)\},\nhitCellsPlayer2(1) = 2,missCellsPlayer1(1) = 9,missCellsPlayer2(1) = 4,\nplayer1Ships(1) = 1,player1Ships(3) = 2,player1shots = 2,\nplayer2Ships(1) = 6,player2shots = 1"];
+2400 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player2,gameStatus = ongoing,hitCellsPlayer1 = \{(1\|-\>1),(1\|-\>2)\},\nhitCellsPlayer2 = \{(1\|-\>1),(1\|-\>2)\},missCellsPlayer1(1) = 4,missCellsPlayer2 = \{\},\nplayer1Ships(3) = 2,player1shots = 3,player2Ships(1) = 6,\nplayer2shots = 2"];
 
-699 [shape=doubleoctagon, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player1,gameStatus = ongoing,hitCellsPlayer1 = \{(1\|-\>1),(1\|-\>2)\},\nhitCellsPlayer2(1) = 2,missCellsPlayer1(1) = 9,missCellsPlayer2 = \{(1\|-\>3),(1\|-\>4)\},\nplayer1Ships(1) = 1,player1Ships(3) = 2,player1shots = 2,\nplayer2Ships(1) = 6,player2shots = 1"];
+2517 [shape=box, color="#99BF38", fontsize=12, penwidth=2, label="currentTurn = Player2,gameStatus = player2Win,hitCellsPlayer1 = \{(1\|-\>1),(1\|-\>2)\},\nhitCellsPlayer2 = \{(1\|-\>1),(1\|-\>2),(3\|-\>2)\},missCellsPlayer1(1) = 4,missCellsPlayer2 = \{\},\nplayer1Ships = \{\},player1shots = 3,player2Ships(1) = 6,\nplayer2shots = 3"];
 
 root [shape=invtriangle, color="#99BF38", fontsize=12, penwidth=2, label="root"];
 
@@ -28,18 +28,20 @@ root -> 0 [style = dotted, color = black, label="SETUP_CONSTANTS", fontsize=12];
 
 1 -> 21 [color = "#006391", label="deployFleet(Player1,\{(1\|-\>1),(1\|-\>2),(3\|-\>2)\})--\>F\nleetDeployed", fontsize=12];
 
-21 -> 105 [color = "#006391", label="deployFleet(Player2,\{(1\|-\>1),(1\|-\>2),(1\|-\>6)\})--\>F\nleetDeployed", fontsize=12];
+21 -> 1005 [color = "#006391", label="deployFleet(Player2,\{(1\|-\>1),(1\|-\>2),(1\|-\>6)\})--\>F\nleetDeployed", fontsize=12];
 
-105 -> 202 [color = "#006391", label="playerShoots((1\|-\>1))--\>hit", fontsize=12];
+1005 -> 2002 [color = "#006391", label="playerShoots((1\|-\>1))--\>hit", fontsize=12];
 
-202 -> 303 [color = "#006391", label="playerShoots((1\|-\>2))--\>hit", fontsize=12];
+2002 -> 2103 [color = "#006391", label="playerShoots((1\|-\>2))--\>hit", fontsize=12];
 
-303 -> 402 [color = "#006391", label="playerShoots((1\|-\>2))--\>hit", fontsize=12];
+2103 -> 2204 [color = "#006391", label="playerShoots((1\|-\>4))--\>miss", fontsize=12];
 
-402 -> 503 [color = "#006391", label="playerShoots((1\|-\>4))--\>miss", fontsize=12];
+2204 -> 2301 [color = "#006391", label="playerShoots((1\|-\>1))--\>hit", fontsize=12];
 
-503 -> 606 [color = "#006391", label="playerShoots((1\|-\>9))--\>miss", fontsize=12];
+2301 -> 2400 [color = "#006391", label="playerShoots((1\|-\>2))--\>hit", fontsize=12];
 
-606 -> 699 [color = "#006391", label="playerShoots((1\|-\>3))--\>miss", fontsize=12];
+2400 -> 2517 [color = "#006391", label="playerShoots((3\|-\>2))--\>hit", fontsize=12];
+
+2517 -> 1 [color = "#006391", label="resetGame--\>resetSuccess", fontsize=12];
 
 }

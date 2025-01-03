@@ -18,8 +18,7 @@ DEFINITIONS
         ({ row, col, img | col : 1..10 & row : 1..10 & img = 0 & 
         (col, 11 - row) : GRID_POSITION }) // Base grid for Player 1
          \/   ({ row, col, img | col : 11..11 & row : 1..10 & img = 2 & 
-        (col -10, 11 - row) : GRID_POSITION }) 
-        \/
+        (col -10, 11 - row) : GRID_POSITION }) \/
        ({ row, col, img | col : 12..21 & row : 1..10 & img = 1 & 
           (col - 11, 11 - row) : GRID_POSITION }) ;// Base grid for Player 2
 
@@ -69,12 +68,6 @@ DEFINITIONS
     ANIMATION_IMG9 == "Images/blackSquar.png";
     ANIMATION_IMG11 == "Images/redArrow.png";
     ANIMATION_IMG12 == "Images/redArrow2.png";
-
-
-
-
-
-
 
 // Declare the variables used in the game
 VARIABLES

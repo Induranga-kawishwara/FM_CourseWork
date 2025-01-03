@@ -47,13 +47,11 @@ DEFINITIONS
             (col-11 , 11 - row) :  missCellsPlayer1 });
 
 
-   ANIMATION_FUNCTION55 == 
+   ANIMATION_FUNCTION55 ==  
      ({ row, col, img | row : 20..20 & col : 11..11 & img = 7 & (gameStatus = player1Win) }) \/
-     ({ row, col, img | row : 20..20 & col : 10..10& img = 11 & (gameStatus = player1Win) }) \/
-     ({ row, col, img | row : 20..20 & col : 12..12 & img = 12 & (gameStatus = player1Win) })  \/
      ({ row, col, img | row : 20..20 & col : 11..11 & img = 8 & (gameStatus = player2Win) }) \/
-     ({ row, col, img | row : 20..20 & col : 10..10& img = 11 & (gameStatus = player2Win) }) \/
-     ({ row, col, img | row : 20..20 & col : 12..12 & img = 12 & (gameStatus = player2Win) }) ;
+     ({ row, col, img | row : 20..20 & col : 10..10& img = 11 & gameStatus : {player1Win , player2Win}}) \/
+     ({ row, col, img | row : 20..20 & col : 12..12 & img = 12 & gameStatus : {player1Win , player2Win}}) ;
 
     // Images for the grid and elements
     ANIMATION_IMG0 == "Images/squarBlue.png";
@@ -147,10 +145,10 @@ OPERATIONS
                 report := AlradyUsed
             ELSE
                 // If the shot hits Player2's fleet
+                player1shots := player1shots + 1 || // Increment Player1's shot count
                 IF target : player2Ships THEN
  
                     player2Ships := player2Ships - {target} ||// Remove the ship from Player2's fleet
-                    player1shots := player1shots + 1 || // Increment Player1's shot count
                     report := hit ||// Report the hit
                     hitCellsPlayer1 := hitCellsPlayer1 \/ {target} ||
                     // If Player2 has no ships left, Player1 wins
@@ -172,9 +170,9 @@ OPERATIONS
             IF target : hitCellsPlayer2 \/ missCellsPlayer2 THEN
                 report := AlradyUsed
             ELSE
+                    player2shots := player2shots + 1 ||
                 IF target : player1Ships THEN
                     player1Ships := player1Ships - {target} ||
-                    player2shots := player2shots + 1 ||
                     report := hit ||
                     hitCellsPlayer2 := hitCellsPlayer2 \/ {target} ||
                     IF  player1Ships - {target} = {} THEN
@@ -230,7 +228,7 @@ OPERATIONS
         statusReport := gameStatus
     END;
     // Reset Game
-    resetGame =
+    restart <-- resetGame =
     BEGIN
         player1Ships := {} ||
         player2Ships := {} ||
@@ -241,6 +239,7 @@ OPERATIONS
         hitCellsPlayer1 := {}||
         hitCellsPlayer2 := {}||
         missCellsPlayer1 := {}||
-        missCellsPlayer2 := {} 
+        missCellsPlayer2 := {} ||
+        restart := resetSuccess
     END
 END

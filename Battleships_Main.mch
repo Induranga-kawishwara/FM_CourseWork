@@ -142,7 +142,7 @@ OPERATIONS
         // If it is Player1's turn
         IF currentTurn = Player1 THEN
             IF target : hitCellsPlayer1 \/ missCellsPlayer1 THEN
-                report := AlradyUsed
+                report := AlreadyUsed
             ELSE
                 // If the shot hits Player2's fleet
                 player1shots := player1shots + 1 || // Increment Player1's shot count
@@ -168,7 +168,7 @@ OPERATIONS
         ELSE  // Player2's turn
             // If the shot hits Player1's fleet
             IF target : hitCellsPlayer2 \/ missCellsPlayer2 THEN
-                report := AlradyUsed
+                report := AlreadyUsed
             ELSE
                     player2shots := player2shots + 1 ||
                 IF target : player1Ships THEN
